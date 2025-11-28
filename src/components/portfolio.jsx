@@ -29,6 +29,9 @@ import housePredictImg from "../assets/Projects/house-price-prediction.png";
 import diwaliImg from "../assets/Projects/diwali-sales-analysis.jpeg";
 import irisImg from "../assets/Projects/iris-model.jpeg";
 
+// resume
+import resume from "../assets/yuvraj-resume.pdf";
+
 /* -------------------------
    FixedImage component (Tailwind-safe props)
    width and height should be valid Tailwind classes
@@ -305,7 +308,7 @@ export default function Portfolio() {
               ))}
 
               <li>
-                <a href="/assets/YUVRAJ%20SINGH%20CV.pdf" download className="px-3 py-1 border border-white/40 rounded-md backdrop-blur-md bg-white/30 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 transition">
+                <a href={resume} download className="px-3 py-1 border border-white/40 rounded-md backdrop-blur-md bg-white/30 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 transition">
                   Resume
                 </a>
               </li>
@@ -347,7 +350,7 @@ export default function Portfolio() {
               ))}
 
               <li>
-                <a href="/assets/YUVRAJ%20SINGH%20CV.pdf" download className="block px-3 py-2 rounded-md border border-white/30 text-center">
+                <a href={resume} download className="block px-3 py-2 rounded-md border border-white/30 text-center">
                   Resume
                 </a>
               </li>
@@ -388,7 +391,7 @@ export default function Portfolio() {
             </p>
             <div className="flex gap-3 flex-wrap">
               <a href="#projects" onClick={(e)=>{ e.preventDefault(); smoothScrollToId('projects'); }} className="px-4 py-2 rounded-full border border-indigo-200/40 text-sm font-medium hover:scale-105 transform transition-shadow shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.12)]">See my work</a>
-              <a href="/resume.pdf" download className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">Download Resume</a>
+              <a href={resume} download className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">Download Resume</a>
             </div>
 
             <div className="flex gap-4 mt-4 text-2xl">
