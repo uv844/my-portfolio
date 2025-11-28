@@ -1,7 +1,11 @@
 // src/components/portfolio.jsx
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-// image imports (relative to src/components)
+
+/* -------------------------
+   Image imports (adjust names if needed)
+   These paths assume images are in src/assets/...
+   ------------------------- */
 import myPhoto from "../assets/images/my-photo.jpg";
 import mySmallPhoto from "../assets/images/my-small-photo.jpg";
 import pythonLogo from "../assets/images/python-logo.png";
@@ -25,9 +29,28 @@ import housePredictImg from "../assets/Projects/house-price-prediction.png";
 import diwaliImg from "../assets/Projects/diwali-sales-analysis.jpeg";
 import irisImg from "../assets/Projects/iris-model.jpeg";
 
-// resume
-import resumePdf from "../assets/yuvraj-resume.pdf";
-
+/* -------------------------
+   FixedImage component (Tailwind-safe props)
+   width and height should be valid Tailwind classes
+   e.g. width="w-72", height="h-72"
+   mode: "cover" | "contain"
+   className: additional wrapper classes
+   ------------------------- */
+function FixedImage({
+  src,
+  alt = "",
+  width = "w-full",
+  height = "h-40",
+  mode = "cover",
+  className = "",
+}) {
+  const modeClass = mode === "contain" ? "object-contain" : "object-cover";
+  return (
+    <div className={`${width} ${height} overflow-hidden ${className}`}>
+      <img src={src} alt={alt} className={`w-full h-full ${modeClass} block`} />
+    </div>
+  );
+}
 
 export default function Portfolio() {
   const [open, setOpen] = useState(false);
@@ -194,11 +217,11 @@ export default function Portfolio() {
     { id: "contact", label: "Contact" },
   ];
 
-  // smooth scroll helper
+  // smooth scroll helper with easing and header offset
   function smoothScrollToId(id, duration = 700) {
     const el = document.getElementById(id);
     if (!el) return;
-    const headerOffset = 96;
+    const headerOffset = 96; // matches scrollMarginTop
     const start = window.pageYOffset;
     const target = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
     const distance = target - start;
@@ -225,10 +248,13 @@ export default function Portfolio() {
       <header className="fixed top-0 left-0 w-full backdrop-blur-lg bg-white/40 border-b border-white/40 z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4 p-4">
           <div className="flex items-center gap-4">
-            <img
+            <FixedImage
               src={mySmallPhoto}
               alt="Small Profile"
-              className="w-10 h-10 rounded-full border border-white/30 shadow-md object-cover"
+              width="w-10"
+              height="h-10"
+              mode="cover"
+              className="rounded-full border border-white/30 shadow-md"
             />
             <h1 className="text-lg md:text-xl font-semibold tracking-wide">Yuvraj Singh</h1>
           </div>
@@ -249,17 +275,15 @@ export default function Portfolio() {
                     >
                       {item.label}
                     </a>
+
+                    {/* underline: expands on hover or when active */}
                     <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full" />
                   </div>
                 </li>
               ))}
 
               <li>
-                <a
-                  href={resumePdf}
-                  download
-                  className="px-3 py-1 border border-white/40 rounded-md backdrop-blur-md bg-white/30 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 transition"
-                >
+                <a href="/assets/YUVRAJ%20SINGH%20CV.pdf" download className="px-3 py-1 border border-white/40 rounded-md backdrop-blur-md bg-white/30 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 transition">
                   Resume
                 </a>
               </li>
@@ -301,7 +325,7 @@ export default function Portfolio() {
               ))}
 
               <li>
-                <a href={resumePdf} download className="block px-3 py-2 rounded-md border border-white/30 text-center">
+                <a href="/assets/YUVRAJ%20SINGH%20CV.pdf" download className="block px-3 py-2 rounded-md border border-white/30 text-center">
                   Resume
                 </a>
               </li>
@@ -313,16 +337,19 @@ export default function Portfolio() {
       {/* Main Section */}
       <main className="pt-28 max-w-6xl mx-auto p-6 space-y-20">
         {/* Hero Section */}
-        <section id="home" className="flex flex-col md:flex-row md:items-start md:gap-8">
-          <motion.img
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7 }}
-            src={myPhoto}
-            alt="Profile"
-            className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-2xl transition-transform transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(99,102,241,0.12)] md:mr-6"
-          />
+        <section id="home" className="flex flex-col md:flex-row md:items-start md:gap-8 items-start">
+          {/* hero image wrapper - fixed sizing and clipping to avoid zoom */}
+          <div className="flex-shrink-0 max-w-[320px] max-h-[320px] overflow-hidden rounded-2xl">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.7 }}
+              className="w-full h-full"
+            >
+              <FixedImage src={myPhoto} alt="Profile" width="w-[320px]" height="h-[320px]" mode="cover" />
+            </motion.div>
+          </div>
 
           <motion.div
             initial="hidden"
@@ -339,7 +366,7 @@ export default function Portfolio() {
             </p>
             <div className="flex gap-3 flex-wrap">
               <a href="#skills" className="px-4 py-2 rounded-full border border-indigo-200/40 text-sm font-medium hover:scale-105 transform transition-shadow shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.12)]">See my work</a>
-              <a href={resumePdf} download className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">Download Resume</a>
+              <a href="/resume.pdf" download className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">Download Resume</a>
             </div>
 
             <div className="flex gap-4 mt-4 text-2xl">
@@ -406,7 +433,7 @@ export default function Portfolio() {
               <motion.div key={c.title} whileHover={{ scale: 1.02 }} className="backdrop-blur-xl bg-white/40 p-4 rounded-xl border border-white/30 shadow-sm hover:shadow-lg transition transform hover:-translate-y-1">
                 <div className="flex items-start gap-4">
                   {c.img && (
-                    <img src={c.img} alt={c.title} className="w-28 h-20 object-cover rounded-md" />
+                    <FixedImage src={c.img} alt={c.title} width="w-32" height="h-20" mode="contain" className="rounded-md bg-white" />
                   )}
 
                   <div className="flex-1">
@@ -469,22 +496,17 @@ export default function Portfolio() {
                 className="backdrop-blur-xl bg-white/40 p-4 rounded-xl border border-white/30 shadow-sm hover:shadow-lg transition transform hover:-translate-y-1"
               >
                 <div className="flex flex-col items-center justify-center gap-3">
+                  {/* icon area (single source of truth) */}
                   {skill === "Python" && (
-                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src={pythonLogo} alt="Python" className="w-12 h-12 object-contain" />
-                    </motion.div>
+                    <FixedImage src={pythonLogo} alt="Python" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
                   )}
 
                   {skill === "Java" && (
-                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src={javaLogo} alt="Java" className="w-12 h-12 object-contain" />
-                    </motion.div>
+                    <FixedImage src={javaLogo} alt="Java" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
                   )}
 
                   {skill === "C" && (
-                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src={cLogo} alt="C" className="w-12 h-12 object-contain" />
-                    </motion.div>
+                    <FixedImage src={cLogo} alt="C" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
                   )}
 
                   {skill === "DSA" && (
@@ -494,21 +516,15 @@ export default function Portfolio() {
                   )}
 
                   {skill === "Model Training" && (
-                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src={modelTrainingLogo} alt="Model Training" className="w-12 h-12 object-contain" />
-                    </motion.div>
+                    <FixedImage src={modelTrainingLogo} alt="Model Training" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
                   )}
 
                   {skill === "Prompt Engineering" && (
-                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src={promptEngineeringLogo} alt="Prompt Engineering" className="w-12 h-12 object-contain" />
-                    </motion.div>
+                    <FixedImage src={promptEngineeringLogo} alt="Prompt Engineering" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
                   )}
 
                   {skill === "HTML & CSS" && (
-                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src={htmlCssLogo} alt="HTML CSS" className="w-12 h-12 object-contain" />
-                    </motion.div>
+                    <FixedImage src={htmlCssLogo} alt="HTML CSS" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
                   )}
 
                   <div className="text-center text-lg font-semibold">{skill}</div>
@@ -537,7 +553,7 @@ export default function Portfolio() {
           <div className="grid sm:grid-cols-2 gap-6">
             {projects.map((p) => (
               <motion.div key={p.title} whileHover={{ scale: 1.03 }} className="backdrop-blur-xl bg-white/40 p-4 rounded-xl border border-white/30 shadow-sm hover:shadow-lg transition transform hover:-translate-y-1">
-                {p.img && <img src={p.img} alt={p.title} className="w-full h-40 object-cover rounded-md mb-3" />}
+                {p.img && <FixedImage src={p.img} alt={p.title} width="w-full" height="h-40" mode="cover" className="rounded-md mb-3" />}
                 <h4 className="text-lg font-semibold mb-1">{p.title}</h4>
                 <p className="text-sm opacity-80 mb-3">{p.desc}</p>
                 {p.repo && (
@@ -620,6 +636,7 @@ export default function Portfolio() {
 
       {/* Mobile sticky indicator (mobile only) */}
       <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 md:hidden z-50">
+  {/* Mobile sticky indicator */}  
   <div className="flex bg-white/30 backdrop-blur rounded-full p-2 gap-2 shadow-lg">
     {navItems.map((item) => (
       <a
