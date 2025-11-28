@@ -56,7 +56,7 @@ export default function Portfolio() {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState("");
 
-  // certificate modal state
+  // certificate modal state (only image popout)
   const [certModalOpen, setCertModalOpen] = useState(false);
   const [activeCert, setActiveCert] = useState(null);
 
@@ -387,7 +387,7 @@ export default function Portfolio() {
               machine learning, web technologies, and innovative solutions.
             </p>
             <div className="flex gap-3 flex-wrap">
-              <a href="#projects" className="px-4 py-2 rounded-full border border-indigo-200/40 text-sm font-medium hover:scale-105 transform transition-shadow shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.12)]">See my work</a>
+              <a href="#projects" onClick={(e)=>{ e.preventDefault(); smoothScrollToId('projects'); }} className="px-4 py-2 rounded-full border border-indigo-200/40 text-sm font-medium hover:scale-105 transform transition-shadow shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.12)]">See my work</a>
               <a href="/resume.pdf" download className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">Download Resume</a>
             </div>
 
@@ -663,79 +663,51 @@ export default function Portfolio() {
 
       </main>
 
-      {/* Certificate Modal */}
+      {/* Certificate Modal - ONLY image popout (big resolution) */}
       {certModalOpen && activeCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* backdrop */}
           <div
-            className="fixed inset-0 bg-black/50"
+            className="fixed inset-0 bg-black/70"
             onClick={closeCert}
             aria-hidden="true"
           />
 
-          {/* modal panel */}
+          {/* image container */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            className="relative z-10 w-full max-w-3xl mx-4 bg-white rounded-2xl shadow-2xl p-6"
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="relative z-10 max-w-[95%] max-h-[90%] w-full flex items-center justify-center"
             role="dialog"
             aria-modal="true"
-            aria-labelledby="cert-title"
+            aria-label={activeCert.title || "Certificate preview"}
           >
-            <div className="flex gap-6">
-              {/* left: larger image */}
-              <div className="w-1/3 flex-shrink-0">
-                <img
-                  src={activeCert.img}
-                  alt={activeCert.title}
-                  className="w-full h-48 object-contain rounded-md bg-gray-50"
-                />
-              </div>
+            {/* actual image (fills container while preserving aspect) */}
+            <img
+              src={activeCert.img}
+              alt={activeCert.title}
+              className="max-w-full max-h-full object-contain rounded-lg bg-white"
+            />
 
-              {/* right: details */}
-              <div className="flex-1">
-                <h3 id="cert-title" className="text-lg font-semibold">
-                  {activeCert.title}
-                </h3>
-                {activeCert.issuer && <p className="text-sm opacity-80 mt-1">{activeCert.issuer}</p>}
-                {activeCert.name && (
-                  <p className="text-sm mt-3">Awarded to <strong>{activeCert.name}</strong></p>
-                )}
-                {activeCert.year && <p className="text-sm mt-1">Year: {activeCert.year}</p>}
-                {activeCert.duration && <p className="text-sm mt-1">Duration: {activeCert.duration}</p>}
-                {activeCert.roll && <p className="text-xs mt-2 opacity-70">Roll: {activeCert.roll}</p>}
-
-                <div className="mt-4 flex items-center gap-3">
-                  {activeCert.verify && (
-                    <a
-                      href={activeCert.verify}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="px-4 py-2 bg-indigo-600 text-white rounded-md"
-                    >
-                      Verify Certificate
-                    </a>
-                  )}
-
-                  <button
-                    onClick={closeCert}
-                    className="px-4 py-2 border rounded-md"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
+            {/* top-right controls: download + close */}
+            <div className="absolute top-3 right-3 flex gap-2">
+              <a
+                href={activeCert.img}
+                download
+                className="px-3 py-1 bg-white/90 rounded-md text-sm border shadow-sm"
+                title="Download certificate image"
+              >
+                Download
+              </a>
+              <button
+                onClick={closeCert}
+                className="px-3 py-1 bg-white/90 rounded-md text-sm border shadow-sm"
+                aria-label="Close"
+              >
+                Close
+              </button>
             </div>
-
-            {/* close X button top-right */}
-            <button
-              onClick={closeCert}
-              className="absolute top-3 right-3 text-gray-600 hover:bg-gray-100 p-1 rounded-md"
-              aria-label="Close certificate modal"
-            >
-              ✕
-            </button>
           </motion.div>
         </div>
       )}
