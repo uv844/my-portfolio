@@ -25,6 +25,9 @@ import housePredictImg from "../assets/Projects/house-price-prediction.png";
 import diwaliImg from "../assets/Projects/diwali-sales-analysis.jpeg";
 import irisImg from "../assets/Projects/iris-model.jpeg";
 
+// resume
+import resumePdf from "../assets/yuvraj-resume.pdf";
+
 
 export default function Portfolio() {
   const [open, setOpen] = useState(false);
@@ -74,7 +77,7 @@ export default function Portfolio() {
       exam: "66/75",
       duration: "Jul–Oct 2025 (12 week course)",
       roll: "NPTEL25CS110S456601353",
-      img: "/assets/Certificates/yuvraj-java-nptel.png",
+      img: certJava,
       verify: "https://nptel.ac.in/noc/E_Certificate/NPTEL25CS110S45660135310998279",
     },
     {
@@ -88,7 +91,7 @@ export default function Portfolio() {
       exam: "51/75",
       duration: "Jul–Oct 2025 (12 week course)",
       roll: "NPTEL25CS159S1256600841",
-      img: "/assets/Certificates/yuvraj-ai-nptel.png",
+      img: certAI,
       verify: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL25CS159S125660084110998279",
     },
     {
@@ -102,7 +105,7 @@ export default function Portfolio() {
       exam: "48.75/75",
       duration: "Jul–Sep 2024 (8 week course)",
       roll: "NPTEL24CS78S435500788",
-      img: "/assets/Certificates/yuvraj-python-nptel.png",
+      img: certPython,
       verify: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL24CS78S43550078802782399",
     },
     {
@@ -111,7 +114,7 @@ export default function Portfolio() {
       issuer: "LetsUpgrade",
       name: "Yuvraj Singh",
       duration: "9–13 July 2024 (5 days)",
-      img: "/assets/Certificates/letsupgrade-java-bootcamp.png",
+      img: certLetsUpgrade,
       verify: "https://verify.letsupgrade.in/",
     },
   ];
@@ -120,37 +123,37 @@ export default function Portfolio() {
     {
       title: "Smart Study Planner",
       desc: "Smart planner that schedules study sessions based on workload and priorities.",
-      img: "/assets/Projects/study-planner.avif",
+      img: studyPlannerImg,
       repo: "https://github.com/uv844/SMART_STUDY_PLANNER",
     },
     {
       title: "Hospital Management System",
       desc: "A digital platform that organizes hospital workflows and patient data.",
-      img: "/assets/Projects/hospital-management-system.png",
+      img: hospitalImg,
       repo: "https://github.com/uv844/Hospital_Management_System",
     },
     {
       title: "Simple N-Queens Solver",
       desc: "A tool that solves the N-Queens puzzle using backtracking and displays valid board configurations.",
-      img: "/assets/Projects/N-Queens.png",
+      img: nQueensImg,
       repo: "https://github.com/uv844/N-Queen-Solver",
     },
     {
       title: "House Prediction Model",
       desc: "A regression-based ML model that predicts house prices using key features like location, size, and amenities.",
-      img: "/assets/Projects/house-price-prediction.png",
+      img: housePredictImg,
       repo: "https://github.com/uv844/NASSCOM/blob/main/housing_price_prediction%20(1).ipynb",
     },
     {
       title: "Diwali Sales Analysis Model",
       desc: "Analyzes Diwali sales data to identify customer behavior, top-selling categories, and revenue patterns.",
-      img: "/assets/Projects/diwali-sales-analysis.jpeg",
+      img: diwaliImg,
       repo: "https://github.com/uv844/NASSCOM/blob/main/Diwali_Sales_Analysis_Yuvraj.ipynb",
     },
     {
       title: "Iris Classification Model",
       desc: "A machine learning model that classifies iris flowers into species using the classic Iris dataset.",
-      img: "/assets/Projects/iris-model.jpeg",
+      img: irisImg,
       repo: "https://github.com/uv844/NASSCOM/blob/main/Yuvraj_Exp5_K_NN_classification_iris_data_with_CV.ipynb",
     },
   ];
@@ -223,7 +226,7 @@ export default function Portfolio() {
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4 p-4">
           <div className="flex items-center gap-4">
             <img
-              src="/assets/images/my-small-photo.jpg"
+              src={mySmallPhoto}
               alt="Small Profile"
               className="w-10 h-10 rounded-full border border-white/30 shadow-md object-cover"
             />
@@ -253,7 +256,7 @@ export default function Portfolio() {
 
               <li>
                 <a
-                  href="/assets/YUVRAJ%20SINGH%20CV.pdf"
+                  href={resumePdf}
                   download
                   className="px-3 py-1 border border-white/40 rounded-md backdrop-blur-md bg-white/30 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 transition"
                 >
@@ -298,7 +301,7 @@ export default function Portfolio() {
               ))}
 
               <li>
-                <a href="/assets/YUVRAJ%20SINGH%20CV.pdf" download className="block px-3 py-2 rounded-md border border-white/30 text-center">
+                <a href={resumePdf} download className="block px-3 py-2 rounded-md border border-white/30 text-center">
                   Resume
                 </a>
               </li>
@@ -316,7 +319,7 @@ export default function Portfolio() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7 }}
-            src="/assets/images/my-photo.jpg"
+            src={myPhoto}
             alt="Profile"
             className="w-56 h-56 md:w-64 md:h-64 rounded-2xl object-cover shadow-2xl transition-transform transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(99,102,241,0.12)] md:mr-6"
           />
@@ -336,7 +339,7 @@ export default function Portfolio() {
             </p>
             <div className="flex gap-3 flex-wrap">
               <a href="#skills" className="px-4 py-2 rounded-full border border-indigo-200/40 text-sm font-medium hover:scale-105 transform transition-shadow shadow-sm hover:shadow-[0_12px_30px_rgba(99,102,241,0.12)]">See my work</a>
-              <a href="/resume.pdf" download className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">Download Resume</a>
+              <a href={resumePdf} download className="px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition">Download Resume</a>
             </div>
 
             <div className="flex gap-4 mt-4 text-2xl">
@@ -468,19 +471,19 @@ export default function Portfolio() {
                 <div className="flex flex-col items-center justify-center gap-3">
                   {skill === "Python" && (
                     <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src="/assets/images/python-logo.png" alt="Python" className="w-12 h-12 object-contain" />
+                      <img src={pythonLogo} alt="Python" className="w-12 h-12 object-contain" />
                     </motion.div>
                   )}
 
                   {skill === "Java" && (
                     <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src="/assets/images/java-logo.png" alt="Java" className="w-12 h-12 object-contain" />
+                      <img src={javaLogo} alt="Java" className="w-12 h-12 object-contain" />
                     </motion.div>
                   )}
 
                   {skill === "C" && (
                     <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src="/assets/images/c-logo.png" alt="C" className="w-12 h-12 object-contain" />
+                      <img src={cLogo} alt="C" className="w-12 h-12 object-contain" />
                     </motion.div>
                   )}
 
@@ -492,19 +495,19 @@ export default function Portfolio() {
 
                   {skill === "Model Training" && (
                     <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src="/assets/images/model-training-logo.png" alt="Model Training" className="w-12 h-12 object-contain" />
+                      <img src={modelTrainingLogo} alt="Model Training" className="w-12 h-12 object-contain" />
                     </motion.div>
                   )}
 
                   {skill === "Prompt Engineering" && (
                     <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src="/assets/images/prompt-engineering-logo.png" alt="Prompt Engineering" className="w-12 h-12 object-contain" />
+                      <img src={promptEngineeringLogo} alt="Prompt Engineering" className="w-12 h-12 object-contain" />
                     </motion.div>
                   )}
 
                   {skill === "HTML & CSS" && (
                     <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-                      <img src="/assets/images/html-css-logo.png" alt="HTML CSS" className="w-12 h-12 object-contain" />
+                      <img src={htmlCssLogo} alt="HTML CSS" className="w-12 h-12 object-contain" />
                     </motion.div>
                   )}
 
