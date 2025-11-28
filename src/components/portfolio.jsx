@@ -1,3 +1,4 @@
+// src/components/portfolio.jsx
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -49,7 +50,7 @@ export default function Portfolio() {
       exam: "66/75",
       duration: "Jul–Oct 2025 (12 week course)",
       roll: "NPTEL25CS110S456601353",
-      img: "/assets/Certificates/Yuvraj Java NPTEL.png",
+      img: "/assets/Certificates/yuvraj-java-nptel.png",
       verify: "https://nptel.ac.in/noc/E_Certificate/NPTEL25CS110S45660135310998279",
     },
     {
@@ -63,13 +64,13 @@ export default function Portfolio() {
       exam: "51/75",
       duration: "Jul–Oct 2025 (12 week course)",
       roll: "NPTEL25CS159S1256600841",
-      img: "/assets/Certificates/Yuvraj AI NPTEL.png",
+      img: "/assets/Certificates/yuvraj-ai-nptel.png",
       verify: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL25CS159S125660084110998279",
     },
     {
       year: "2024",
       title: "Programming, Data Structures and Algorithms using Python — NPTEL",
-      level: "Elite", // unchanged,
+      level: "Elite",
       issuer: "NPTEL / IIT Madras",
       name: "Yuvraj Singh",
       score: "73%",
@@ -77,7 +78,7 @@ export default function Portfolio() {
       exam: "48.75/75",
       duration: "Jul–Sep 2024 (8 week course)",
       roll: "NPTEL24CS78S435500788",
-      img: "/assets/Certificates/Yuvraj Python NPTEL.png",
+      img: "/assets/Certificates/yuvraj-python-nptel.png",
       verify: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL24CS78S43550078802782399",
     },
     {
@@ -86,11 +87,9 @@ export default function Portfolio() {
       issuer: "LetsUpgrade",
       name: "Yuvraj Singh",
       duration: "9–13 July 2024 (5 days)",
-      img: "/assets/Certificates/LetsUpgrade Java Bootcamp.png",
+      img: "/assets/Certificates/letsupgrade-java-bootcamp.png",
       verify: "https://verify.letsupgrade.in/",
     },
-    
-    
   ];
 
   const projects = [
@@ -115,7 +114,7 @@ export default function Portfolio() {
     {
       title: "House Prediction Model",
       desc: "A regression-based ML model that predicts house prices using key features like location, size, and amenities.",
-      img: "/assets/Projects/House-Price-Prediction.png",
+      img: "/assets/Projects/house-price-prediction.png",
       repo: "https://github.com/uv844/NASSCOM/blob/main/housing_price_prediction%20(1).ipynb",
     },
     {
@@ -168,11 +167,11 @@ export default function Portfolio() {
     { id: "contact", label: "Contact" },
   ];
 
-  // smooth scroll helper with easing and header offset
+  // smooth scroll helper
   function smoothScrollToId(id, duration = 700) {
     const el = document.getElementById(id);
     if (!el) return;
-    const headerOffset = 96; // matches scrollMarginTop
+    const headerOffset = 96;
     const start = window.pageYOffset;
     const target = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
     const distance = target - start;
@@ -214,20 +213,26 @@ export default function Portfolio() {
                 <li key={item.id}>
                   <div className="relative group">
                     <a
-                      href={`#${item.id}`} onClick={(e) => { e.preventDefault(); smoothScrollToId(item.id); }}
+                      href={`#${item.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        smoothScrollToId(item.id);
+                      }}
                       className="group relative px-2 py-1 transition-colors hover:text-indigo-600"
                     >
                       {item.label}
                     </a>
-
-                    {/* underline: expands on hover or when active */}
                     <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-indigo-600 transition-all duration-300 group-hover:w-full" />
                   </div>
                 </li>
               ))}
 
               <li>
-                <a href="/assets/YUVRAJ SINGH CV.pdf" download className="px-3 py-1 border border-white/40 rounded-md backdrop-blur-md bg-white/30 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 transition">
+                <a
+                  href="/assets/YUVRAJ%20SINGH%20CV.pdf"
+                  download
+                  className="px-3 py-1 border border-white/40 rounded-md backdrop-blur-md bg-white/30 shadow-sm hover:shadow-lg transform hover:-translate-y-0.5 transition"
+                >
                   Resume
                 </a>
               </li>
@@ -254,14 +259,22 @@ export default function Portfolio() {
             <ul className="flex flex-col gap-3">
               {navItems.map((item) => (
                 <li key={item.id}>
-                  <a href={`#${item.id}`} onClick={(e) => { e.preventDefault(); smoothScrollToId(item.id); setOpen(false); }} className="block px-3 py-2 rounded-md hover:bg-indigo-50">
+                  <a
+                    href={`#${item.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      smoothScrollToId(item.id);
+                      setOpen(false);
+                    }}
+                    className="block px-3 py-2 rounded-md hover:bg-indigo-50"
+                  >
                     {item.label}
                   </a>
                 </li>
               ))}
 
               <li>
-                <a href="/assets/YUVRAJ SINGH CV.pdf" download className="block px-3 py-2 rounded-md border border-white/30 text-center">
+                <a href="/assets/YUVRAJ%20SINGH%20CV.pdf" download className="block px-3 py-2 rounded-md border border-white/30 text-center">
                   Resume
                 </a>
               </li>
@@ -311,7 +324,7 @@ export default function Portfolio() {
 
               <a href="https://www.linkedin.com/in/yuvraj-singh-258649312/" className="p-2 rounded-md transition transform hover:scale-105 hover:shadow-[0_8px_32px_rgba(10,102,194,0.12)]" aria-label="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M4.98 3.5a2.5 2.5 0 11.02 0H4.98zM3 8.98h4v12H3v-12zm7.5 0h3.8v1.6h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.65 4.75 6.1v6.35h-4v-5.6c0-1.33-.02-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.94v5.7h-4v-12z" />
+                  <path d="M4.98 3.5a2.5 2.5 0 11.02 0H4.98zM3 8.98h4v12H3v-12zm7.5 0h3.8v1.6h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.65 4.75 6.10v6.35h-4v-5.6c0-1.33-.02-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.94v5.7h-4v-12z" />
                 </svg>
               </a>
 
@@ -339,17 +352,11 @@ export default function Portfolio() {
                 {e.university && (
                   <p className="opacity-80 text-sm mt-1">University: {e.university}</p>
                 )}
-                {false && (
-                  <p className="opacity-80 text-sm mt-1">{e.college}</p>
-                )}
                 {e.school && (
                   <p className="opacity-80 text-sm mt-1">{e.school}</p>
                 )}
                 {e.board && (
                   <p className="opacity-80 text-sm mt-1">Board: {e.board}</p>
-                )}
-                {false && (
-                  <p className="opacity-80 text-sm mt-1">{e.school}</p>
                 )}
                 {e.cgpa && (
                   <p className="opacity-80 text-sm mt-1">CGPA: {e.cgpa}</p>
@@ -435,8 +442,6 @@ export default function Portfolio() {
                 className="backdrop-blur-xl bg-white/40 p-4 rounded-xl border border-white/30 shadow-sm hover:shadow-lg transition transform hover:-translate-y-1"
               >
                 <div className="flex flex-col items-center justify-center gap-3">
-                  {/* icon area (single source of truth) */}
-
                   {skill === "Python" && (
                     <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
                       <img src="/assets/images/python-logo.png" alt="Python" className="w-12 h-12 object-contain" />
@@ -555,7 +560,7 @@ export default function Portfolio() {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.1c-3.34.73-4.04-1.61-4.04-1.61-.54-1.38-1.32-1.75-1.32-1.75-1.08-.74.08-.73.08-.73 1.2.08 1.83 1.24 1.83 1.24 1.06 1.82 2.78 1.29 3.46.99.11-.78.42-1.29.76-1.59-2.66-.3-5.46-1.33-5.46-5.92 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.9 1.24 3.22 0 4.6-2.8 5.61-5.47 5.91.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.82.58A12 12 0 0012 .5z" /></svg>
                   </a>
                   <a href="https://www.linkedin.com/in/yuvraj-singh-258649312/" className="p-2 rounded-md transition transform hover:scale-105 hover:shadow-[0_8px_32px_rgba(10,102,194,0.12)]" aria-label="LinkedIn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 0H4.98zM3 8.98h4v12H3v-12zm7.5 0h3.8v1.6h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.65 4.75 6.1v6.35h-4v-5.6c0-1.33-.02-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.94v5.7h-4v-12z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11.02 0H4.98zM3 8.98h4v12H3v-12zm7.5 0h3.8v1.6h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.65 4.75 6.10v6.35h-4v-5.6c0-1.33-.02-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.94v5.7h-4v-12z" /></svg>
                   </a>
                   <a href="https://www.instagram.com/__yuvraj_03_/" className="p-2 rounded-md transition transform hover:scale-105 hover:shadow-[0_8px_32px_rgba(219,39,119,0.12)]" aria-label="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.5A4.5 4.5 0 1016.5 13 4.5 4.5 0 0012 8.5zm6.5-3.5a1 1 0 11-1 1 1 1 0 011-1z" /></svg>
@@ -588,12 +593,12 @@ export default function Portfolio() {
 
       {/* Mobile sticky indicator (mobile only) */}
       <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 md:hidden z-50">
-  {/* Mobile sticky indicator */}
   <div className="flex bg-white/30 backdrop-blur rounded-full p-2 gap-2 shadow-lg">
     {navItems.map((item) => (
       <a
         key={item.id}
-        href={`#${item.id}`} onClick={(e) => { e.preventDefault(); smoothScrollToId(item.id); }}
+        href={`#${item.id}`}
+        onClick={(e) => { e.preventDefault(); smoothScrollToId(item.id); }}
         className="block w-3 h-3 rounded-full bg-white/60 transition-all hover:bg-indigo-600 hover:shadow-[0_8px_32px_rgba(99,102,241,0.18)]"
       ></a>
     ))}
