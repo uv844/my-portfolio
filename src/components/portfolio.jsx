@@ -1,6 +1,30 @@
 // src/components/portfolio.jsx
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+// image imports (relative to src/components)
+import myPhoto from "../assets/images/my-photo.jpg";
+import mySmallPhoto from "../assets/images/my-small-photo.jpg";
+import pythonLogo from "../assets/images/python-logo.png";
+import javaLogo from "../assets/images/java-logo.png";
+import cLogo from "../assets/images/c-logo.png";
+import modelTrainingLogo from "../assets/images/model-training-logo.png";
+import promptEngineeringLogo from "../assets/images/prompt-engineering-logo.png";
+import htmlCssLogo from "../assets/images/html-css-logo.png";
+
+// certificates
+import certJava from "../assets/Certificates/yuvraj-java-nptel.png";
+import certAI from "../assets/Certificates/yuvraj-ai-nptel.png";
+import certPython from "../assets/Certificates/yuvraj-python-nptel.png";
+import certLetsUpgrade from "../assets/Certificates/letsupgrade-java-bootcamp.png";
+
+// projects
+import studyPlannerImg from "../assets/Projects/study-planner.avif";
+import hospitalImg from "../assets/Projects/hospital-management-system.png";
+import nQueensImg from "../assets/Projects/N-Queens.png";
+import housePredictImg from "../assets/Projects/house-price-prediction.png";
+import diwaliImg from "../assets/Projects/diwali-sales-analysis.jpeg";
+import irisImg from "../assets/Projects/iris-model.jpeg";
+
 
 export default function Portfolio() {
   const [open, setOpen] = useState(false);
