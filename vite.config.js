@@ -6,5 +6,5 @@ export default defineConfig({
 plugins: [react()],
 // If you deploy to GitHub Pages on a repo (e.g. username.github.io/repo)
 // uncomment and set base: '/my-portfolio/'
-base: '/my-portfolio/'
+base: './'
 })
