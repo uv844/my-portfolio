@@ -525,17 +525,22 @@ export default function Portfolio() {
                 className="backdrop-blur-xl bg-white/40 p-4 rounded-xl border border-white/30 shadow-sm hover:shadow-lg transition transform hover:-translate-y-1"
               >
                 <div className="flex flex-col items-center justify-center gap-3">
-                  {/* icon area (single source of truth) */}
                   {skill === "Python" && (
-                    <FixedImage src={pythonLogo} alt="Python" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
+                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+                      <img src={pythonLogo} alt="Python" className="w-12 h-12 object-contain" />
+                    </motion.div>
                   )}
 
                   {skill === "Java" && (
-                    <FixedImage src={javaLogo} alt="Java" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
+                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+                      <img src={javaLogo} alt="Java" className="w-12 h-12 object-contain" />
+                    </motion.div>
                   )}
 
                   {skill === "C" && (
-                    <FixedImage src={cLogo} alt="C" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
+                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+                      <img src={cLogo} alt="C" className="w-12 h-12 object-contain" />
+                    </motion.div>
                   )}
 
                   {skill === "DSA" && (
@@ -545,15 +550,21 @@ export default function Portfolio() {
                   )}
 
                   {skill === "Model Training" && (
-                    <FixedImage src={modelTrainingLogo} alt="Model Training" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
+                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+                      <img src={modelTrainingLogo} alt="Model Training" className="w-12 h-12 object-contain" />
+                    </motion.div>
                   )}
 
                   {skill === "Prompt Engineering" && (
-                    <FixedImage src={promptEngineeringLogo} alt="Prompt Engineering" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
+                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+                      <img src={promptEngineeringLogo} alt="Prompt Engineering" className="w-12 h-12 object-contain" />
+                    </motion.div>
                   )}
 
                   {skill === "HTML & CSS" && (
-                    <FixedImage src={htmlCssLogo} alt="HTML CSS" width="w-12" height="h-12" mode="contain" className="p-1 bg-white rounded-md" />
+                    <motion.div initial={{ y: 0 }} animate={{ y: [0, -6, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+                      <img src={htmlCssLogo} alt="HTML CSS" className="w-12 h-12 object-contain" />
+                    </motion.div>
                   )}
 
                   <div className="text-center text-lg font-semibold">{skill}</div>
@@ -562,6 +573,7 @@ export default function Portfolio() {
             ))}
           </div>
         </motion.section>
+
 
         {/* Achievements */}
         <motion.section id="achievements" style={{ scrollMarginTop: 96 }} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} variants={sectionAnim} transition={{ duration: 0.6 }} className="space-y-6">
@@ -663,14 +675,14 @@ export default function Portfolio() {
 
       </main>
 
-      {/* Certificate Modal - ONLY image popout (big resolution) */}
-      {certModalOpen && activeCert && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      {/* Certificate Modal - responsive, always inside viewport */}
+        {certModalOpen && activeCert && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* backdrop */}
           <div
-            className="fixed inset-0 bg-black/70"
-            onClick={closeCert}
-            aria-hidden="true"
+          className="fixed inset-0 bg-black/70"
+          onClick={closeCert}
+          aria-hidden="true"
           />
 
           {/* image container */}
