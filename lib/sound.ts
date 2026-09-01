@@ -8,7 +8,7 @@ let soundEnabled = false;
 
 if (typeof window !== "undefined") {
   const saved = localStorage.getItem("portfolio_sound_enabled");
-  soundEnabled = saved === "true";
+  soundEnabled = saved !== "false";
 }
 
 function initAudioContext(): AudioContext | null {
