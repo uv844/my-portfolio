@@ -72,36 +72,24 @@ function Stat({
         lift={5}
         depth={depth}
         hud
-        className="h-full p-4 sm:p-5"
+        className="flex h-full flex-col justify-between p-4 sm:p-5"
       >
-        {/* Wraps rather than collides: in the 2-up mobile grid a long single-word
-            label ("Contributions") is wider than the column, and with the badge
-            held at shrink-0 the label would otherwise slide underneath it.
-
-            The reserved heights keep all four numbers on one baseline. 1.25rem is
-            the badge's own height, so a card without a badge still lines up with
-            one that has it — that is what fixes the 4-up desktop row. The taller
-            mobile figure is the wrapped case: two label lines, the row gap, then
-            the badge on its own line. Both assume a label of at most two lines. */}
-        <div
-          className={cn(
-            "flex flex-wrap items-start justify-between gap-x-2 gap-y-1.5",
-            live ? "min-h-[3.35rem] sm:min-h-5" : "min-h-5",
-          )}
-        >
-          <span className="mono-label min-w-0 break-words leading-tight">
-            {label}
-          </span>
-          {live ? <LiveBadge /> : null}
+        <div>
+          <div className="flex min-h-[2.6rem] items-start justify-between gap-x-2 gap-y-1 sm:min-h-[2.25rem]">
+            <span className="mono-label min-w-0 break-words leading-tight">
+              {label}
+            </span>
+            {live ? <LiveBadge /> : null}
+          </div>
+          <p className="mt-3 font-display text-[1.65rem] font-semibold leading-none tracking-tight sm:text-[2.25rem] lg:text-[2.5rem]">
+            {staticValue ? (
+              <span className="tnum">{staticValue}</span>
+            ) : (
+              <Counter value={value ?? 0} decimals={decimals} suffix={suffix} />
+            )}
+          </p>
         </div>
-        <p className="mt-4 font-display text-[2rem] font-semibold leading-none tracking-tight sm:text-[2.5rem]">
-          {staticValue ? (
-            <span className="tnum">{staticValue}</span>
-          ) : (
-            <Counter value={value ?? 0} decimals={decimals} suffix={suffix} />
-          )}
-        </p>
-        <p className="mt-2 font-mono text-[10px] leading-relaxed tracking-[0.1em] text-dim">
+        <p className="mt-3 font-mono text-[10px] leading-relaxed tracking-[0.1em] text-dim">
           {detail}
         </p>
       </Panel>
@@ -209,13 +197,11 @@ export default function Hero({
             </Reveal>
           </div>
 
-          {/* Stat rail — four cards climbing in, one beat apart, and stepped across the
-              elevation scale so the row itself has a front-to-back read rather than
-              sitting as one flat strip. */}
+          {/* Stat rail — cards sitting at uniform depth so they align cleanly across all devices */}
           <Stair
             step={STEP.card}
             delay={0.1}
-            className="mt-14 grid grid-cols-2 gap-x-3 gap-y-6 sm:mt-16 sm:gap-4 lg:grid-cols-4"
+            className="mt-14 grid grid-cols-2 gap-3.5 sm:mt-16 sm:gap-4 lg:grid-cols-4"
           >
             <Stat
               label="LeetCode solved"
@@ -227,7 +213,7 @@ export default function Hero({
               }
               tone="lime"
               live={leetcode.live}
-              depth="front"
+              depth="raised"
             />
             <Stat
               label="Contributions / yr"
@@ -235,7 +221,7 @@ export default function Hero({
               detail={contributions.live ? "GitHub · @uv844" : "Latest recorded count"}
               tone="cyan"
               live={contributions.live}
-              depth="floating"
+              depth="raised"
             />
             <Stat
               label="CGPA"
@@ -251,7 +237,7 @@ export default function Hero({
               staticValue={fallbackStats.totalSolved}
               detail="LeetCode · GeeksforGeeks · CodeChef"
               tone="lime"
-              depth="flush"
+              depth="raised"
             />
           </Stair>
 
