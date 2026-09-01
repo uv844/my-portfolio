@@ -215,7 +215,7 @@ export default function Hero({
           <Stair
             step={STEP.card}
             delay={0.1}
-            className="mt-14 grid grid-cols-2 gap-3 sm:mt-16 sm:gap-4 lg:grid-cols-4"
+            className="mt-14 grid grid-cols-2 gap-x-3 gap-y-6 sm:mt-16 sm:gap-4 lg:grid-cols-4"
           >
             <Stat
               label="LeetCode solved"
