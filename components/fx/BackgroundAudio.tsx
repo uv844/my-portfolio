@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 
 const YOUTUBE_VIDEO_ID = "Uv4FgV3Hhog";
+const START_OFFSET_SECONDS = 10;
 
 declare global {
   interface Window {
@@ -29,7 +30,7 @@ export default function BackgroundAudio({ enabled }: { enabled: boolean }) {
         videoId: YOUTUBE_VIDEO_ID,
         playerVars: {
           autoplay: enabled ? 1 : 0,
-          start: 10,
+          start: START_OFFSET_SECONDS,
           loop: 1,
           playlist: YOUTUBE_VIDEO_ID,
           controls: 0,
@@ -50,7 +51,7 @@ export default function BackgroundAudio({ enabled }: { enabled: boolean }) {
             try {
               event.target.setVolume(50);
               if (enabled) {
-                event.target.seekTo(6, true);
+                event.target.seekTo(START_OFFSET_SECONDS, true);
                 event.target.playVideo();
               }
             } catch (e) {
@@ -93,9 +94,9 @@ export default function BackgroundAudio({ enabled }: { enabled: boolean }) {
         if (enabled) {
           if (
             playerRef.current.getCurrentTime &&
-            playerRef.current.getCurrentTime() < 6
+            playerRef.current.getCurrentTime() < START_OFFSET_SECONDS
           ) {
-            playerRef.current.seekTo(6, true);
+            playerRef.current.seekTo(START_OFFSET_SECONDS, true);
           }
           playerRef.current.playVideo();
         } else {
@@ -116,9 +117,9 @@ export default function BackgroundAudio({ enabled }: { enabled: boolean }) {
         try {
           if (
             playerRef.current.getCurrentTime &&
-            playerRef.current.getCurrentTime() < 6
+            playerRef.current.getCurrentTime() < START_OFFSET_SECONDS
           ) {
-            playerRef.current.seekTo(6, true);
+            playerRef.current.seekTo(START_OFFSET_SECONDS, true);
           }
           playerRef.current.playVideo();
         } catch (e) {
